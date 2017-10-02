@@ -1,0 +1,29 @@
+{
+  "name": "guestbook",
+  "version": "1.0.0",
+  "description": "SPA Guestbook",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server/index.js",
+    "local": "./node_modules/.bin/nodemon --watch server -e js server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grantran/guestbook.git"
+  },
+  "author": "Grant Tran, Steven Mao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/grantran/guestbook/issues"
+  },
+  "homepage": "https://github.com/grantran/guestbook#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}
