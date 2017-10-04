@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = 8000;
 
+app.set('view engine', 'ejs')
 
 //Middleware
 app.use(bodyParser.urlencoded({extended: true}));
