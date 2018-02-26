@@ -6,15 +6,11 @@ $(document).ready(function() {
 
   guestentry.submit(function (event) {
     event.preventDefault();
-    console.log($('#first-name').val());
-    console.log($('#last-name').val());
     let firstName = $('#first-name').val();
     let lastName = $('#last-name').val();
     let membership = $('#membership').val();
 
-    console.log(membership);
     let time = moment(event.created_at).format('YYYY-MM-DD HH:mm:ss');
-    console.log(time);
 
     let appendName = firstName + ' ' + lastName + ' - ' + time;
 
