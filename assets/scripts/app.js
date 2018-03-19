@@ -1,4 +1,16 @@
 $(document).ready(function() {
+  
+  // Initial load of users from database 
+  // This probably will be split into a different page
+  // Or filtered by date 
+
+  $.ajax({
+    url: '/users',
+    method: 'GET',
+    success: function(results) {
+      console.log('heyooo', results); 
+    }
+  })
 
   let guestentry = $('#guest-entry'); 
   let member_cont = $('#member-name-list');
