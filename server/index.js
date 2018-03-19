@@ -4,6 +4,7 @@ const app = express();
 const PORT = 8000;
 
 app.set('view engine', 'ejs')
+app.set('env', 'development')
 
 //Middleware
 app.use(bodyParser.urlencoded({extended: true}));
@@ -15,4 +16,5 @@ app.get('/', function (req, res) {
 
 app.listen(PORT, function () {
   console.log('Example app listening on port', PORT)
+  console.log(process.env.NODE_ENV);
 })
