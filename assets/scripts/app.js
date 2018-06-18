@@ -25,14 +25,26 @@ $(document).ready(function() {
     let time = moment(event.created_at).format('YYYY-MM-DD HH:mm:ss');
 
     let appendName = firstName + ' ' + lastName + ' - ' + time;
-
+    let mem = false;  
     if (membership === 'member') {
-      member_cont.append($('<li>').text(appendName));      
+      member_cont.append($('<li>').text(appendName));
+      mem = true;    
     } else {
-      non_member_cont.append($('<li>').text(appendName));
+      non_member_cont.append($('<li>').text(appendName)); 
       
     }
     // cont.append($('<span>').text(lastName));
+    // console.log('ge', guestentry); 
+
+    let data = {"firstname": firstName, "lastname":lastName, "membership": mem};
+    $.ajax({
+      url: '/addUser', 
+      method: 'POST',
+      data: data, 
+      success: function(results) {
+        console.log('the results:', results); 
+      }
+    })
 
     $('#first-name').val("");
     $('#last-name').val("");
