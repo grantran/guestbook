@@ -1,20 +1,47 @@
 $(document).ready(function() {
+  $('#guest-entry').disableAutoFill();
   
   // Initial load of users from database 
   // This probably will be split into a different page
   // Or filtered by date 
+const guestentry = $('#guest-entry'); 
+const member_cont = $('#member-name-list');
+const non_member_cont = $('#non-member-name-list');
 
-  $.ajax({
+$.ajax({
     url: '/users',
     method: 'GET',
     success: function(results) {
-      console.log('heyooo', results); 
+      results.forEach((entry) => {
+        appendMembers(entry.first_name, entry.last_name, entry.membership); 
+      })
     }
-  })
+  });
 
-  let guestentry = $('#guest-entry'); 
-  let member_cont = $('#member-name-list');
-  let non_member_cont = $('#non-member-name-list');
+  $('#first-name').autocomplete({
+    source: function(req, res) {
+      $.ajax({
+        url: '/users',
+        method: 'GET',
+        success: function(results) {
+          console.log(results);
+          res($.map(results, function (item) {
+            return item.first_name
+          }));
+      }
+    }
+  )}});
+  
+  function appendMembers(firstName, lastName, membership) {
+    const appendName = firstName + ' ' + lastName; 
+    if (membership) { 
+      member_cont.append($('<li>').text(appendName)); 
+    } else {
+      non_member_cont.append($('<li>').text(appendName)); 
+    }
+  }
+
+
 
   guestentry.submit(function (event) {
     event.preventDefault();
